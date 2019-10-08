@@ -4,6 +4,12 @@
 
 This is ABH DevDays demo app.
 
+## Architecture
+
+The following is a diagram of the app architecture:
+
+![architecture](docs/images/architecture.png)
+
 ## Setup instructions
 
 Install the following:
