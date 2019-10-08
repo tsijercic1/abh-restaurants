@@ -70,6 +70,7 @@ public class MakeReservation extends TestBase {
         new LoginPage(driver)
                 .loginToRestaurants(formatter.format(date)+EMAIL, PASSWORD);
     }
+
     @Test(priority = 8)
     public void checkUserLoginIsSuccessful(){
         Assert.assertTrue(new HomePage(driver)
@@ -82,4 +83,32 @@ public class MakeReservation extends TestBase {
                 .openRestaurantsPage(1);
     }
 
+    @Test(priority = 10)
+    public void openFirstRestaurant() {
+        new Restaurants(driver)
+                .clickReserveButton();
+    }
+
+    @Test(priority = 11)
+    public void populateReservationForm() {
+        new Restaurant(driver)
+                .findTables("1", "2019-10-24", "14:30");
+    }
+
+    @Test(priority = 12)
+    public void checkAvailabilityShown() {
+        Assert.assertTrue(new Restaurant(driver)
+                .checkAvailabilityText("Availability on 2019-10-24 around 14:30 for 1 People:"));
+    }
+
+    @Test(priority = 13)
+    public void selectTheBestTime() {
+        new Restaurant(driver).clickTheBestTime();
+    }
+
+    @Test(priority = 14)
+    public void checkReservationConfirmationText() {
+        Assert.assertTrue(new ReservationDetails(driver)
+                .checkReservationCompletionText("Complete your reservation"));
+    }
 }
