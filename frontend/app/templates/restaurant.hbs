@@ -55,22 +55,22 @@
         <div class="col-xs-12 col-sm-3">
           <ul class="restaurant-navigation">
             <li>
-              <a id="reservation" href="#reservation">
+              <a id="lreservation" href="#reservation">
                 Reservation
               </a>
             </li>
             <li>
-              <a id="about" href="#about">
+              <a id="labout" href="#about">
                 About
               </a>
             </li>
             <li>
-              <a id="menu" href="#menu">
+              <a id="lmenu" href="#menu">
                 Menu
               </a>
             </li>
             <li>
-              <a id="photos" href="#photos">
+              <a id="lphotos" href="#photos">
                 Photos
               </a>
             </li>
@@ -178,10 +178,13 @@
             {{/ui/tab-pane-content}}
             {{/ui/tab-pane}}
           </div>
-          <div class="grid-container">
-            {{#each model.restaurant.photos as |photo|}}
-            <img src="{{photo.path}}" />
-            {{/each}}
+          <div id="photos" class="restaurant-card">
+            <h2 class="restaurant-card-title">Photos:</h2>
+            <div class="grid-container">
+              {{#each model.restaurant.photos as |photo|}}
+              <img src="{{photo.path}}" />
+              {{/each}}
+            </div>
           </div>
 
         </div>

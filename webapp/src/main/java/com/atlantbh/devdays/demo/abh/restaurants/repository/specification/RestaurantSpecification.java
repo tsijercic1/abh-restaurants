@@ -32,21 +32,24 @@ public class RestaurantSpecification implements Specification<Restaurant> {
        */
       Root<Restaurant> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
     Predicate defaultQuery = criteriaBuilder.like(root.get(Restaurant_.NAME), "%" + "%");
-    Predicate predicate =
-        criteriaBuilder.and(
-            (!filter.getName().toString().isEmpty())
-                ? criteriaBuilder.like(
-                    criteriaBuilder.lower(root.get(Restaurant_.NAME)),
-                    filter.getName().toLowerCase() + "%")
-                : defaultQuery,
-            (filter.getPrice() != null)
-                ? criteriaBuilder.equal(root.get(Restaurant_.PRICE_RANGE), filter.getPrice())
-                : defaultQuery,
-            (filter.getRating() != null)
-                ? criteriaBuilder.equal(
-                    criteriaBuilder.toLong(root.get(Restaurant_.AVERAGE_RATING)),
-                    filter.getRating())
-                : defaultQuery);
+    Predicate predicate = null;
+    if (filter != null && filter.getName() != null) {
+      predicate =
+          criteriaBuilder.and(
+              (!filter.getName().toString().isEmpty())
+                  ? criteriaBuilder.like(
+                      criteriaBuilder.lower(root.get(Restaurant_.NAME)),
+                      filter.getName().toLowerCase() + "%")
+                  : defaultQuery,
+              (filter.getPrice() != null)
+                  ? criteriaBuilder.equal(root.get(Restaurant_.PRICE_RANGE), filter.getPrice())
+                  : defaultQuery,
+              (filter.getRating() != null)
+                  ? criteriaBuilder.equal(
+                      criteriaBuilder.toLong(root.get(Restaurant_.AVERAGE_RATING)),
+                      filter.getRating())
+                  : defaultQuery);
+    }
     return predicate;
     //    return criteriaBuilder.like(root.get(Restaurant_.NAME), filter.getName() + "%");
   }
