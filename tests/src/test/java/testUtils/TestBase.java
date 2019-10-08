@@ -10,6 +10,7 @@ public abstract class TestBase {
     @BeforeTest(alwaysRun = true)
     @Parameters({"browser", "url"})
     public void setUp(String browser, String url) {
+        System.setProperty("webdriver.gecko.driver", "C:/opts/geckodriver-v0.25.0-win64/geckodriver.exe");
         DriverSupport driverSupport = new DriverSupport();
         driver = driverSupport.initDriver(browser);
         driver.get(url);
