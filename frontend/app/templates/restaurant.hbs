@@ -147,7 +147,7 @@
                 defaultMerkerPosition=defaultMerkerPosition
                 bounds=model.restaurant.city.bounds
                 markerLat=model.restaurant.latitude
-                markerLng=model.restaurant.longitude
+                markerLng=mmodel.restaurant.longitude
                 editableMarker=true
               }}
             </div>
@@ -157,6 +157,7 @@
             <p class="restaurant-card-bodytext">
               {{model.restaurant.description}}
             </p>
+
           </div>
           <div id="menu" class="restaurant-card">
             <h2 class="restaurant-card-title floating">
@@ -177,6 +178,12 @@
             {{/ui/tab-pane-content}}
             {{/ui/tab-pane}}
           </div>
+          <div class="grid-container">
+            {{#each model.restaurant.photos as |photo|}}
+            <img src="{{photo.path}}" />
+            {{/each}}
+          </div>
+
         </div>
       </div>
     </div>
